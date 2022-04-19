@@ -1,0 +1,33 @@
+{
+  "name": "review-backend",
+  "version": "1.0.0",
+  "description": "To rebuild a back end system for an existing retailer application that can support large data set and can scale to meet the demands of production traffic.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rosemary-SDC/Review-Backend.git"
+  },
+  "author": "Hailee Lu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rosemary-SDC/Review-Backend/issues"
+  },
+  "homepage": "https://github.com/Rosemary-SDC/Review-Backend#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.3",
+    "postgres": "^3.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^27.5.1"
+  }
+}
