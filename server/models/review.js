@@ -89,5 +89,58 @@ module.exports = {
       }
     });
   },
-  
+
+  postReview(data, callback) {
+    const {
+      product_id, rating, summary, body, recommend, name, email, photos, characteristics,
+    } = data;
+    const Char_id = Object.keys(characteristics);
+    const Char_value = Object.values(characteristics);
+    // create newReview temp table and use "unnest" method to store array of data in one query
+    let queryString = `
+    WITH review AS (
+      INSERT INTO reviews
+      (product_id, rating, date, summary, body, recommend, reported, reviewer_name, reviewer_email, helpfulness)
+      VALUES
+      (${product_id}, ${rating}, extract(epoch from now()) * 1000, '${summary}', '${body}', ${recommend}, false, '${name}', '${email}', 0)
+      RETURNING id
+    ),
+    photos AS(
+      INSERT INTO
+      reviews_photos(url, reviews_id)
+      VALUES
+      (UNNEST ($1::text[]),(SELECT id FROM review))
+    )
+    INSERT INTO characteristic_reviews
+    (characteristic_id, review_id, value)
+    VALUES
+    (UNNEST ($2::int[]),(SELECT id FROM review), UNNEST ($3::int[]))
+    `;
+    return pool.query(queryString, [photos, Char_id, Char_value], (err, results) => {
+      callback(err, results);
+    });
+  },
+
+  markHelpful(review_id, callback) {
+    const queryString = `
+    UPDATE reviews
+    SET helpfulness = helpfulness + 1
+    WHERE id = ${review_id}
+    `;
+    return pool.query(queryString, (err, results) => {
+      callback(err, results);
+    });
+  },
+
+  markReport(review_id, callback) {
+    const queryString = `
+    UPDATE reviews
+    SET reported = ${true}
+    WHERE id = ${review_id}
+    `;
+    return pool.query(queryString, (err, results) => {
+      callback(err, results.rows);
+    });
+  },
+
 };

@@ -46,7 +46,7 @@ module.exports = {
         console.log('Controller error in markHelpful: ', err);
         res.status(400).send(err);
       } else {
-        res.status(204).send('marked helpful!');
+        res.status(204).send('Marked!');
       }
     });
   },
@@ -58,7 +58,7 @@ module.exports = {
         console.log('Controller err in markReport: ', err);
         res.status(400).send(err);
       } else {
-        res.status(204);
+        res.status(204).send('Reported!');
       }
     });
   },
