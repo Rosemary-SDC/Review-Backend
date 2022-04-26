@@ -63,3 +63,20 @@ CREATE TABLE characteristic_reviews (
   FOREIGN KEY characteristic_id REFERENCES characteristics(id)
 );
 
+-- index
+CREATE INDEX reviews_product_id_idx
+ON reviews (product_id)
+
+CREATE INDEX reviews_photos_reviews_id_idx
+ON reviews_photos (reviews_id)
+
+CREATE INDEX characteristics_product_id_idx
+ON characteristics (product_id)
+
+CREATE INDEX characteristic_reviews_characteristic_id_idx
+ON characteristic_reviews (characteristic_id)
+
+CREATE INDEX characteristic_reviews_review_id_idx
+ON characteristic_reviews (review_id)
+
+
