@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+
+  server:
+    image: node
+    ports:
+      - 3001:3001
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: SDCpassword
+      POSTGRES_DB: reviews
+    ports:
+      - '5432:5432'
+    volumes:
+      - /var/lib/postgres/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
