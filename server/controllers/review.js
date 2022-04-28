@@ -40,6 +40,7 @@ module.exports = {
   },
 
   markHelpful(req, res) {
+    console.log(req)
     const { review_id } = req.params;
     models.review.markHelpful(review_id, (err, data) => {
       if (err) {

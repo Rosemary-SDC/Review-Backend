@@ -5,8 +5,10 @@ const DB_PW = require('../config');
 const pool = new Pool({
   user: 'postgres',
   password: DB_PW,
-  host: 'ec2-3-87-174-119.compute-1.amazonaws.com',
+  host: 'ec2-54-167-151-16.compute-1.amazonaws.com',
   database: 'SDC-Reviews',
+  // host: 'localhost',
+  // database: 'review',
   port: 5432,
 });
 
