@@ -1,6 +1,6 @@
 
 # A Dockerfile is a text document that contains the instructions to assemble a Docker image.
-
+# what type of env / what existing docker image to choose
 FROM node:latest
 # Create app directory
 WORKDIR /SDC-Review
@@ -16,6 +16,7 @@ RUN npm install
 
 # Bundle app source
 COPY . .
-EXPOSE 3001
+# make port available outside docker container
+EXPOSE 4000
 
 CMD [ "npm", "start" ]

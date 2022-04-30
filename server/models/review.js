@@ -97,7 +97,7 @@ module.exports = {
     const Char_id = Object.keys(characteristics);
     const Char_value = Object.values(characteristics);
     // create newReview temp table and use "unnest" method to store array of data in one query
-    let queryString = `
+    const queryString = `
     WITH review AS (
       INSERT INTO reviews
       (product_id, rating, date, summary, body, recommend, reported, reviewer_name, reviewer_email, helpfulness)
