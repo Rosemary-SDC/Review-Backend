@@ -3,27 +3,18 @@ version: "3.8"
 services:
 
   server:
-    image: node
+    build: .
+    image: sdc-server
     ports:
-      - 3001:3001
-    depends_on:
-      - db
+      - "5000:5000"
 
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: SDCpassword
-      POSTGRES_DB: reviews
-    ports:
-      - '5432:5432'
+  nginx:
+    image: nginx
     volumes:
-      - /var/lib/postgres/data
-
-  adminer:
-    image: adminer
-    restart: always
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - server
     ports:
-      - 8080:8080
+      - "4000:4000"
+
 
