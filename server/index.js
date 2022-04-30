@@ -13,8 +13,8 @@ const PORT = 3000;
 
 app.use('/', router);
 
-app.get('/loaderio-f21b418566a88def07b763fdbe1d6842', (req, res) => {
-  res.sendFile('/home/ubuntu/Review-Backend/loaderio-f21b418566a88def07b763fdbe1d6842.txt');
+app.get('/loaderio-214c83eae1406dd16e512735cc083ec0', (req, res) => {
+  res.sendFile('/home/ubuntu/Review-Backend/loaderio-214c83eae1406dd16e512735cc083ec0.txt');
 });
 
 app.listen(PORT, () => {
